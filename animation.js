@@ -54,13 +54,13 @@ function starForge() {
 
 		materialOptions = {
 			size: 1.0,
-			transparency: true, 
+			transparency: true,
 			opacity: 0.7
 		};
 
 		starStuff = new THREE.PointCloudMaterial(materialOptions);
 
-	for (var i = 0; i < starQty; i++) {		
+	for (var i = 0; i < starQty; i++) {
 
 		var starVertex = new THREE.Vector3();
 		starVertex.x = Math.random() * 2000 - 1000;
@@ -79,14 +79,14 @@ function starForge() {
 window.addEventListener( 'resize', onWindowResize, false );
 
 
-	function onWindowResize() {
+function onWindowResize() {
 
-		// Everything should resize nicely if it needs to!
-	  	var WIDTH = window.innerWidth,
-	  		HEIGHT = window.innerHeight;
+	// Everything should resize nicely if it needs to!
+  	var WIDTH = window.innerWidth,
+  		HEIGHT = window.innerHeight;
 
-	  	camera.aspect = aspectRatio;
-	  	camera.updateProjectionMatrix();
-	  	renderer.setSize(WIDTH, HEIGHT);
-	}
+  	camera.aspect = aspectRatio;
+  	camera.updateProjectionMatrix();
+  	renderer.setSize(WIDTH, HEIGHT);
+
 }

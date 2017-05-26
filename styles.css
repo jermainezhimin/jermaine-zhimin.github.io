@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+canvas { 
+    width: 100vw; 
+    height: 100vh;
+}
+
+#info {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-size: 20px;
+
+    color: red;
+	position: absolute;
+    text-align: center;
+    display:block;
+	top: 30vh;
+	width: 100%;
+
+	z-index: 100;
+
+}

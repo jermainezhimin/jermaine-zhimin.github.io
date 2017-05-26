@@ -1,6 +1,13 @@
 var camera, scene, renderer;
 var geometry, material, mesh;
 
+var container, aspectRatio,
+		HEIGHT, WIDTH, fieldOfView,
+		nearPlane, farPlane,
+		mouseX, mouseY, windowHalfX,
+		windowHalfY, stats, geometry,
+		starStuff, materialOptions, stars;
+
 init();
 animate();
 
@@ -20,7 +27,7 @@ function init() {
 
     mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
-
+    starForge();
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -40,14 +47,46 @@ function animate() {
 }
 
 
+function starForge() {
+
+	var starQty = 45000;
+		geometry = new THREE.SphereGeometry(1000, 100, 50);
+
+		materialOptions = {
+			size: 1.0,
+			transparency: true, 
+			opacity: 0.7
+		};
+
+		starStuff = new THREE.PointCloudMaterial(materialOptions);
+
+	for (var i = 0; i < starQty; i++) {		
+
+		var starVertex = new THREE.Vector3();
+		starVertex.x = Math.random() * 2000 - 1000;
+		starVertex.y = Math.random() * 2000 - 1000;
+		starVertex.z = Math.random() * 2000 - 1000;
+
+		geometry.vertices.push(starVertex);
+
+	}
+
+	stars = new THREE.PointCloud(geometry, starStuff);
+	scene.add(stars);
+}
+
 //Resizing the screen
 window.addEventListener( 'resize', onWindowResize, false );
 
-function onWindowResize(){
 
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+	function onWindowResize() {
 
-    renderer.setSize( window.innerWidth, window.innerHeight );
+		// Everything should resize nicely if it needs to!
+	  	var WIDTH = window.innerWidth,
+	  		HEIGHT = window.innerHeight;
 
+	  	camera.aspect = aspectRatio;
+	  	camera.updateProjectionMatrix();
+	  	renderer.setSize(WIDTH, HEIGHT);
+	}
 }

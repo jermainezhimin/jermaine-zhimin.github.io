@@ -39,13 +39,14 @@ function animate() {
 
     requestAnimationFrame(animate);
 
+    scene.rotation.x += 0.00001;
+    scene.rotation.y += 0.00001;
     mesh.rotation.x += 0.01;
     mesh.rotation.y += 0.02;
 
     renderer.render(scene, camera);
 
 }
-
 
 function starForge() {
 

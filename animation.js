@@ -20,10 +20,10 @@ function init() {
     scene = new THREE.Scene();
 
     geometry = new THREE.BoxGeometry(200, 200, 200);
-	material = new THREE.MeshBasicMaterial( { color: 0xffff00, wireframe: true } );
+	material = new THREE.MeshBasicMaterial( { color: 0xFFFB5E, wireframe: true } );
 	mesh = new THREE.Mesh(geometry, material);
-	mesh.position.y = 500;
-	//scene.add(mesh);
+	//mesh.position.y = 500;
+	scene.add(mesh);
 
 	starCreator();
 
@@ -40,9 +40,8 @@ function animate() {
 
     scene.rotation.x += 0.00001;
     scene.rotation.y += 0.00001;
-    //mesh.rotation.x += 0.01;
-	//
-mesh.rotation.y += 0.02;
+	mesh.rotation.x += 0.01;
+	mesh.rotation.y += 0.02;
 	
     renderer.render(scene, camera);
 

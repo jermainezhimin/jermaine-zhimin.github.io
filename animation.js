@@ -6,7 +6,7 @@ var container, aspectRatio,
 		nearPlane, farPlane,
 		mouseX, mouseY, windowHalfX,
 		windowHalfY, stats, geometry,
-		starStuff, materialOptions, stars;
+		starMaterial, materialOptions, stars;
 
 init();
 animate();
@@ -15,24 +15,23 @@ animate();
 function init() {
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 1000;
+    camera.position.z = 300;
 
     scene = new THREE.Scene();
 
     geometry = new THREE.BoxGeometry(200, 200, 200);
-    material = new THREE.MeshBasicMaterial({
-        color: 0xff0000,
-        wireframe: true
-    });
+	material = new THREE.MeshBasicMaterial( { color: 0xffff00, wireframe: true } );
+	mesh = new THREE.Mesh(geometry, material);
+	mesh.position.y = 500;
+	//scene.add(mesh);
 
-    mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
-    starForge();
-    renderer = new THREE.WebGLRenderer();
+	starCreator();
+
+	renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     document.body.appendChild(renderer.domElement);
-
+	
 }
 
 function animate() {
@@ -41,44 +40,51 @@ function animate() {
 
     scene.rotation.x += 0.00001;
     scene.rotation.y += 0.00001;
-    mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.02;
-
+    //mesh.rotation.x += 0.01;
+	//
+mesh.rotation.y += 0.02;
+	
     renderer.render(scene, camera);
 
 }
 
-function starForge() {
+function starCreator() {
 
-	var starQty = 45000;
-		geometry = new THREE.SphereGeometry(1000, 100, 50);
+	var starQuantity = 45000;
+	geometry = new THREE.SphereGeometry(1000, 100, 50);
 
-		materialOptions = {
-			size: 1.0,
-			transparency: true,
-			opacity: 0.7
-		};
+	materialOptions = {
+		size: 1.0,
+		opacity: 0.7
+	};
 
-		starStuff = new THREE.PointCloudMaterial(materialOptions);
+	starMaterial = new THREE.PointsMaterial(materialOptions);
 
-	for (var i = 0; i < starQty; i++) {
+	for (var i = 0; i < starQuantity; i++) {
 
 		var starVertex = new THREE.Vector3();
 		starVertex.x = Math.random() * 2000 - 1000;
 		starVertex.y = Math.random() * 2000 - 1000;
 		starVertex.z = Math.random() * 2000 - 1000;
 
+		
 		geometry.vertices.push(starVertex);
 
 	}
 
-	stars = new THREE.PointCloud(geometry, starStuff);
+	stars = new THREE.Points(geometry, starMaterial);
 	scene.add(stars);
 }
 
+window.addEventListener( 'resize', resize, false );
+
+function resize(){
+	location.reload() 
+}
+
+/*
 //Resizing the screen
 window.addEventListener( 'resize', onWindowResize, false );
-
 
 function onWindowResize() {
 
@@ -91,3 +97,4 @@ function onWindowResize() {
   	renderer.setSize(WIDTH, HEIGHT);
 
 }
+*/

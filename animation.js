@@ -18,7 +18,7 @@ function init() {
     camera.position.z = 300;
 
     scene = new THREE.Scene();
-
+	scene.background = new THREE.Color(0x000000)
     geometry = new THREE.BoxGeometry(200, 200, 200);
 	material = new THREE.MeshBasicMaterial( { color: 0xFFFB5E, wireframe: true } );
 	mesh = new THREE.Mesh(geometry, material);

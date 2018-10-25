@@ -54,3 +54,21 @@ p {
     transform: translate(-50%, -50%);
 
 }
+
+#subtitle {
+
+    text-align: center;
+
+    width: 100%;
+    height: auto;
+    max-width: 1000px;
+	z-index: 100;
+
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    display:block;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+
+}
